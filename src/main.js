@@ -26,8 +26,6 @@ import lang from "element-ui/lib/locale/lang/ja";
 import locale from "element-ui/lib/locale";
 import "element-ui/lib/theme-chalk/icon.css";
 import "css/element-custom.scss";
-/*import ElementUI from "element-ui";
-console.log(33, ElementUI);*/
 locale.use(lang);
 
 import {Card, Button, Loading, Menu, MenuItem, Submenu, Tag} from "element-ui";
