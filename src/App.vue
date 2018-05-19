@@ -1,3 +1,19 @@
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+	height: 100%;
+}
+body {
+	font-family: Meiryo, sans-serif;
+}
+#app {
+	min-height: 100vh;
+}
+</style>
 <template>
 	<div id="app">
 		<header>
@@ -27,20 +43,3 @@ export default {
 	},
 };
 </script>
-
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
-html,
-body {
-	height: 100%;
-}
-body {
-	font-family: Meiryo, sans-serif;
-}
-#app {
-	min-height: 100vh;
-}
-</style>
