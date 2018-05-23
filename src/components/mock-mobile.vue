@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-.mock-mobile {
+body .mock-mobile {
 	width: 150px;
 	height: 218px;
 	border: 5px solid #000;

@@ -1,5 +1,6 @@
 var path = require("path");
 var webpack = require("webpack");
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, argv) => {
 	let exp = {
@@ -16,7 +17,12 @@ module.exports = (env, argv) => {
 					test: /\.css$/,
 					use : [
 						"vue-style-loader",
-						"css-loader",
+						{
+							loader : "css-loader",
+							options: {
+								url    : false,
+							},
+						},
 					],
 				},
 				{
@@ -28,7 +34,7 @@ module.exports = (env, argv) => {
 						{
 							loader : "css-loader",
 							options: {
-								modules: true,
+								//modules: true,
 								// オプションでCSS内のurl()メソッドの取り込みを禁止する
 								url    : false,
 								// ソースマップの利用有無
@@ -124,6 +130,9 @@ module.exports = (env, argv) => {
 		performance: {
 			hints: "warning",
 		},
+		plugins: [
+			new VueLoaderPlugin()
+		]
 	//devtool: '#eval-source-map'
 	};
 	console.log("MODE:" + argv.mode);

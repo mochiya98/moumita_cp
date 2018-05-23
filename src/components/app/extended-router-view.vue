@@ -8,7 +8,7 @@
 	</div>
 </template>
 <style lang="scss">
-.el-button--ghost {
+body .el-button--ghost {
 	background-color: transparent;
 	color: #fff;
 	border-width: 1px;

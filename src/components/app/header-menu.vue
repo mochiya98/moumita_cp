@@ -20,7 +20,7 @@
 .el-menu--horizontal > .el-menu-item.is-active {
 	border-bottom-width: 4px;
 }
-.el-menu--right {
+body .el-menu--right {
 	float: right;
 }
 .el-submenu-item--right {

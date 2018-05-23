@@ -12,7 +12,7 @@
 </style>
 <template>
 	<article class="not-logged-in">
-		<h1>もう見たconnpass</h1>
+		<h1 class="hoge">もう見たconnpass</h1>
 		<mock-mobile/>
 		<p>忙しい人のためのconnpassWebアプリ</p>
 		<p>まだ見てないイベント"だけ"チェック出来ます</p>
