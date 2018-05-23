@@ -10,8 +10,8 @@ import VueMq from "vue-mq";
  
 Vue.use(VueMq, {
 	breakpoints: {
-		mobile : 470,
 		desktop: Infinity,
+		mobile : 470,
 	},
 });
 
@@ -37,14 +37,15 @@ import "element-ui/lib/theme-chalk/menu.css";
 import "element-ui/lib/theme-chalk/menu-item.css";
 import "element-ui/lib/theme-chalk/submenu.css";
 import "element-ui/lib/theme-chalk/tag.css";
-for (let part of [Button, Card, Menu, MenuItem, Submenu, Tag]){
+for (const part of [Button, Card, Menu, MenuItem, Submenu, Tag]){
 	Vue.component(part.name, part);
 }
 
+const elApp = document.body.appendChild(document.createElement("div"));
 
 new Vue({
 	components: {App},
-	el        : "#app",
+	el        : elApp,
 	router,
 	store,
 	template  : "<App/>",

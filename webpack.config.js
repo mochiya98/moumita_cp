@@ -1,6 +1,7 @@
-var path = require("path");
-var webpack = require("webpack");
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const path = require("path");
+//const webpack = require("webpack");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env, argv) => {
 	let exp = {
@@ -20,7 +21,7 @@ module.exports = (env, argv) => {
 						{
 							loader : "css-loader",
 							options: {
-								url    : false,
+								url: false,
 							},
 						},
 					],
@@ -36,7 +37,7 @@ module.exports = (env, argv) => {
 							options: {
 								//modules: true,
 								// オプションでCSS内のurl()メソッドの取り込みを禁止する
-								url    : false,
+								url: false,
 								// ソースマップの利用有無
  
 								// 0 => no loaders (default);
@@ -78,12 +79,6 @@ module.exports = (env, argv) => {
 				},
 			],
 		},
-		/*optimization:{
-    runtimeChunk: false,
-    splitChunks: {
-      chunks: "all", //Taken from https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693
-    }
-  },*/
 		resolve: {
 			alias: {
 				"vue$": "vue/dist/vue.esm.js",
@@ -94,24 +89,6 @@ module.exports = (env, argv) => {
 				path.resolve("./src"),
 			],
 		},
-		/*optimization: {
-    minimizer: [
-      // we specify a custom UglifyJsPlugin here to get source maps in production
-      new config.optimization.minimize({
-        cache: true,
-        parallel: true,
-        uglifyOptions: {
-          compress: false,
-          ecma: 6,
-          mangle: true
-        },
-        sourceMap: true
-      }),
-      new webpack.LoaderOptionsPlugin({
-        minimize: true
-      })
-    ]
-  },*/
 		/*resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -131,8 +108,15 @@ module.exports = (env, argv) => {
 			hints: "warning",
 		},
 		plugins: [
-			new VueLoaderPlugin()
-		]
+			new VueLoaderPlugin(),
+			new HtmlWebpackPlugin({
+				filename: "index.html",
+				minify  : {
+					removeScriptTypeAttributes: true,
+				},
+				title: "moumita_cp",
+			}),
+		],
 	//devtool: '#eval-source-map'
 	};
 	console.log("MODE:" + argv.mode);
@@ -154,7 +138,3 @@ module.exports = (env, argv) => {
 	}
 	return exp;
 };
-
-/*if (process.env.NODE_ENV !== 'production') {
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-}});*/
