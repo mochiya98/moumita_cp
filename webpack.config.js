@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
 		output: {
 			path      : path.resolve(__dirname, "./dist"),
 			//publicPath: "/dist/",
-			filename: "build.js",
+			filename: "js/app.js",
 		},
 		module: {
 			rules: [
@@ -21,25 +21,18 @@ module.exports = (env, argv) => {
 						{
 							loader : "css-loader",
 							options: {
-								url: false,
 							},
 						},
 					],
 				},
 				{
-					test: /\.scss/, // 対象となるファイルの拡張子
+					test: /\.scss/,
 					use : [
-					// linkタグに出力する機能
 						"vue-style-loader",
-						// CSSをバンドルするための機能
 						{
 							loader : "css-loader",
 							options: {
 								//modules: true,
-								// オプションでCSS内のurl()メソッドの取り込みを禁止する
-								url: false,
-								// ソースマップの利用有無
- 
 								// 0 => no loaders (default);
 								// 1 => postcss-loader;
 								// 2 => postcss-loader, sass-loader
@@ -49,7 +42,6 @@ module.exports = (env, argv) => {
 						{
 							loader : "sass-loader",
 							options: {
-							// ソースマップの利用有無
 							},
 						},
 					],
@@ -62,7 +54,6 @@ module.exports = (env, argv) => {
 							scss: "vue-style-loader!css-loader!sass-loader", // <style lang="scss">
 							sass: "vue-style-loader!css-loader!sass-loader?indentedSyntax", // <style lang="sass">
 						},
-					// other vue-loader options go here
 					},
 				},
 				{
@@ -83,18 +74,12 @@ module.exports = (env, argv) => {
 			alias: {
 				"vue$": "vue/dist/vue.esm.js",
 			},
-			extensions: [".js", ".vue", ".less"],
+			extensions: [".js", ".vue"],
 			modules   : [
 				path.resolve("./node_modules"),
 				path.resolve("./src"),
 			],
 		},
-		/*resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
-  },*/
 		devServer: {
 			historyApiFallback: true,
 			contentBase       : "dist",
@@ -122,7 +107,7 @@ module.exports = (env, argv) => {
 	console.log("MODE:" + argv.mode);
 	if(argv.mode !== "production"){
 		exp.devtool = "#source-map";
-		console.log(exp.module.rules);
+		//console.log(exp.module.rules);
 		exp
 			.module
 			.rules
