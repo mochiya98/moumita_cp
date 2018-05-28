@@ -29,7 +29,7 @@ export default {
 		loginWithTwitter: function(){
 			this.moveWaitTwitter = true;
 			window.top.location.href =
-				"http://127.0.0.1/api/v1/login/twitter/auth?callback=moumita_cp";
+				"http://mochiya98.starfree.jp/api/v1/login/twitter/auth?callback=moumita_cp";
 		},
 	},
 };
