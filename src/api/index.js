@@ -22,7 +22,10 @@ export default {
 		result.catch(function(){
 			//AnErrorOccoused
 		});
-		return result;
+		return result.then((r)=>{
+			if(r.data.error)throw new Error(r.data.error);
+			return r.data.result;
+		});
 	},
 
 	get(url, params){
