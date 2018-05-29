@@ -1,5 +1,5 @@
 # もう見たConnpass
-![Vue.js](https://img.shields.io/badge/Front--end-Vue.js-4fc08d.svg) ![PHP+SQLite3](https://img.shields.io/badge/Server(release)-PHP%2BSQLite3-6699ff.svg)  
+![Vue.js](https://img.shields.io/badge/Front--end-Vue.js-4fc08d.svg) ![PHP+SQLite3](https://img.shields.io/badge/Server(production)-PHP%2BSQLite3-6699ff.svg)  
 *mobile friendly connpass webapp.*  
 > 1. Fast page movement  
 > can watch many events quicky  
@@ -26,5 +26,4 @@ npm run build
 ```
 
 ## Calling API Specification
-> currently writing.
-
+> please look /openapi.yaml
