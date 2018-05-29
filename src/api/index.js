@@ -16,8 +16,7 @@ export default {
 				withCredentials: true,
 			});
 		} else if (method === "post"){
-			params.withCredentials = true;
-			result = axios.post(fullurl, params);
+			result = axios.post(fullurl, params, {withCredentials: true});
 		}
 		result.catch(function(){
 			//AnErrorOccoused
@@ -37,7 +36,10 @@ export default {
 	},
 
 	put(url, params){
-		params = {_method: "PUT", ...params};
+		params = {
+			_method: "PUT",
+			...params,
+		};
 		return this.request("post", url, params);
 	},
 };
