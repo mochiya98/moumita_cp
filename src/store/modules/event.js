@@ -5,32 +5,40 @@ const store = {
 	actions: {
 		getNextMoumita({commit, state}, payload){
 			return new Promise((resolve, reject)=>{
-				api.get("/events/moumita", {unreceived: state.unreceived_moumita})
-					.then(function(response){
-						if(!response.data.result){
+				api.get("/events", {
+					filter    : "moumita",
+					unreceived: state.unreceived_moumita,
+				})
+					.then(function(result){
+						if(!result.events){
 							router.push("/");
 							location.reload();
 							return false;
 						}
-						let result = response.data.result;
-						commit("addEvents", result);
-						if(result.length > 0)commit("updateUnreceivedMoumita", result[result.length - 1].moumita);
-						resolve(result.length);
+						let events = result.events;
+						commit("addEvents", events);
+						if(events.length > 0)commit("updateUnreceivedMoumita", events[events.length - 1].moumita);
+						resolve(events.length);
 					});
 			});
 		},
 		getNextUnread({commit, state}, payload){
 			return new Promise((resolve, reject)=>{
-				api.get("/events/unread", {unreceived: state.unreceived_unread})
-					.then(function(response){
-						if(!response.data.result){
+				api.get("/events", {filter    : "unread",
+					unreceived: state.unreceived_unread})
+					.then(function(result){
+						if(!result.events){
 							location.reload();
 							return false;
 						}
-						let result = response.data.result;
-						commit("addEvents", result);
-						if(result.length > 0)commit("updateUnreceivedUnread", result[result.length - 1].data.updated_at);
-						resolve(result.length);
+						let events = result.events;
+						commit("addEvents", events);
+						if(events.length > 0)commit("updateUnreceivedUnread", events[events.length - 1].data.updated_at);
+						resolve(events.length);
+					})
+					.catch(function(err){
+						location.reload();
+						return false;
 					});
 			});
 		},
@@ -38,14 +46,14 @@ const store = {
 			return new Promise((resolve, reject)=>{
 				commit("moumita", payload);
 				resolve();
-				api.get("/moumita", {event_id: payload.event_id});
+				api.put("/events/" + payload.event_id, {moumita: "true"});
 			});
 		},
 		restore({commit}, payload){
 			return new Promise((resolve, reject)=>{
 				commit("restore", payload);
 				resolve();
-				api.get("/restore", {event_id: payload.event_id});
+				api.put("/events/" + payload.event_id, {moumita: "false"});
 			});
 		},
 	},

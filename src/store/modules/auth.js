@@ -4,14 +4,16 @@ const store = {
 	actions: {
 		logout({commit}, payload){
 			api.get("/logout", {})
-				.then(function(response){
-					commit("logout");
+				.then(function(result){
+					if(result.status === "ok"){
+						commit("logout");
+					}
 				});
 		},
 		updateState({commit}, payload){
 			api.get("/state", {})
-				.then(function(response){
-					commit("updateState", response.data);
+				.then(function(result){
+					commit("updateState", result);
 				});
 		},
 	},
