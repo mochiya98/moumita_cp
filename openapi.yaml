@@ -1,0 +1,238 @@
+openapi: 3.0.1
+servers:
+  - url: 'http://mochiya98.starfree.jp/api/v1/moumita_cp'
+info:
+  description: '[mochiya98/moumita_cp](https://github.com/mochiya98/moumita_cp)'
+  version: 1.0.0
+  title: もう見たConnpass back-end
+  license:
+    name: The MIT License
+    url: 'https://opensource.org/licenses/MIT'
+tags:
+  - name: events
+    description: events
+  - name: login
+    description: manage login state
+paths:
+  '/events':
+    get:
+      parameters:
+      - in: query
+        name: filter
+        description: get events mode [enum]unread/moumita
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: unreceived
+        description: end datetime
+        schema:
+          type: integer
+      tags:
+        - events
+      summary: 'Get events'
+      operationId: getEvents
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      events:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/EventResponse'
+        '400':
+          $ref: '#/components/responses/400ErrorResponse'
+        '500':
+          $ref: '#/components/responses/500ErrorResponse'
+  '/events/{id}':
+    parameters:
+    - $ref: '#/components/parameters/id'
+    put:
+      tags:
+        - events
+      requestBody:
+        description: 'moumita flag'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                moumita:
+                  type: boolean
+      summary: 'Switch moumita'
+      operationId: switchMoumita
+      responses:
+        '200':
+          $ref: '#/components/responses/200ResultResponse'
+        '400':
+          $ref: '#/components/responses/400ErrorResponse'
+        '500':
+          $ref: '#/components/responses/500ErrorResponse'
+  '/logout':
+    get:
+      tags:
+        - login
+      summary: 'Logout'
+      operationId: logout
+      responses:
+        '200':
+          $ref: '#/components/responses/200ResultResponse'
+        '500':
+          $ref: '#/components/responses/500ErrorResponse'
+  '/state':
+    get:
+      tags:
+        - login
+      summary: 'Get login status'
+      operationId: getLoginStatus
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      isLoggedIn:
+                        type: boolean
+                      uname:
+                        type: string
+                        example: hogeUser
+        '500':
+          $ref: '#/components/responses/500ErrorResponse'
+components:
+  parameters:
+    id:
+        name: id
+        in: path
+        description: event id
+        required: true
+        schema:
+          type: integer
+  responses:
+    200ResultResponse:
+      description: 'OK'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              result:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+    400ErrorResponse:
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: ErrorMessage
+                description: ErrorMessage
+    500ErrorResponse:
+      description: 'Internal Server Error'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: ErrorMessage
+                description: ErrorMessage
+  schemas:
+    event_id:
+      type: integer
+      example: 89979
+    event_title:
+      type: string
+      example: なんとか勉強会
+    event_catch:
+      type: string
+      example: テストについて学ぼう
+    event_description:
+      type: string
+      example: <p>詳細は未定です</p>
+    event_event_url:
+      type: string
+      example: https://connpass.com/event/89979/
+    event_started_at:
+      type: string
+      example: 1528884000
+    event_ended_at:
+      type: string
+      example: 1528894800
+    event_updated_at:
+      type: string
+      example: 1527618747
+    event_address:
+      type: string
+      example: 東京都港区 赤坂3-9-1 (紀陽ビル)
+    event_place:
+      type: string
+      example: 第三会議室
+    event_limit:
+      type: integer
+      example: 20
+    event_pcnt:
+      type: integer
+      example: 7
+    event_group_title:
+      type: string
+      example: なんとか研究会
+    moumita_ut:
+      type: string
+      example: 1527618747
+    EventDetail:
+      type: object
+      properties:
+        event_id:
+          $ref: '#/components/schemas/event_id'
+        title:
+          $ref: '#/components/schemas/event_title'
+        catch:
+          $ref: '#/components/schemas/event_catch'
+        description:
+          $ref: '#/components/schemas/event_description'
+        event_url:
+          $ref: '#/components/schemas/event_event_url'
+        started_at:
+          $ref: '#/components/schemas/event_started_at'
+        ended_at:
+          $ref: '#/components/schemas/event_ended_at'
+        updated_at:
+          $ref: '#/components/schemas/event_updated_at'
+        address:
+          $ref: '#/components/schemas/event_address'
+        place:
+          $ref: '#/components/schemas/event_place'
+        limit:
+          $ref: '#/components/schemas/event_limit'
+        pcnt:
+          $ref: '#/components/schemas/event_pcnt'
+        group_title:
+          $ref: '#/components/schemas/event_group_title'
+    EventResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EventDetail'
+        event_id:
+          $ref: '#/components/schemas/event_id'
+        moumita:
+          $ref: '#/components/schemas/moumita_ut'
