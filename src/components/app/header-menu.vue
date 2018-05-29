@@ -40,7 +40,7 @@ body .el-menu--right {
 		<template v-if="loggedIn">
 			<el-submenu index="_submenu-user" class="el-menu--right" :show-timeout=0 :hide-timeout=150>
 				<template slot="title">{{uname}}さん</template>
-				<el-menu-item class="el-submenu-item--right" index="/setting">設定</el-menu-item>
+				<!--<el-menu-item class="el-submenu-item--right" index="/setting">設定</el-menu-item>-->
 				<el-menu-item class="el-submenu-item--right" index="/logout" click="logout">ログアウト</el-menu-item>
 			</el-submenu>
 		</template>
