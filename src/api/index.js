@@ -35,4 +35,9 @@ export default {
 	post(url, params){
 		return this.request("post", url, params);
 	},
+
+	put(url, params){
+		params = {_method: "PUT", ...params};
+		return this.request("post", url, params);
+	},
 };
