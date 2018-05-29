@@ -1,18 +1,30 @@
-# moumita_cp
+# もう見たConnpass
+![Vue.js](https://img.shields.io/badge/Front--end-Vue.js-4fc08d.svg) ![PHP+SQLite3](https://img.shields.io/badge/Server(release)-PHP%2BSQLite3-6699ff.svg)  
+*mobile friendly connpass webapp.*  
+> 1. Fast page movement  
+> can watch many events quicky  
+> 2. Micro interaction  
+> lucid, stressless  
+> 3. Mobile friendly  
+> easy to use on mobile   
 
-> A Vue.js project
+## Production  
+[もうみたConnpass](http://mochiya98.starfree.jp/moumita_cp/)
 
-## Build Setup
+### Production Server Environment
+PHP+SQLite3 RESTful API  
+(GET/POST only, using _method attribute alternatively)  
+>why php?  
+>that is the specification of the hosting server...  
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
+## Build
+```sh
+git clone git@github.com:mochiya98/moumita_cp.git
+cd moumita_cp
+npm i
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Calling API Specification
+> currently writing.
+
