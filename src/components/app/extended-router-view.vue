@@ -82,6 +82,14 @@ $trans-class: "router-page-trans";
 		transform: translate(-100%, 0);
 	}
 }
+@media screen and (max-width: 470px) {
+	.#{$container-class} {
+		> * {
+			margin-top: 50px;
+			padding: 10px 0;
+		}
+	}
+}
 </style>
 <script>
 export default {

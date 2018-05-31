@@ -88,6 +88,11 @@
 	text-align: center;
 	cursor: pointer;
 }
+@media screen and (max-width: 470px) {
+	.event-card > h1 {
+		font-size: 140%;
+	}
+}
 </style>
 <template>
 	<page-container class="purple">

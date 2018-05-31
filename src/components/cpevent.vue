@@ -1,4 +1,4 @@
-<style>
+<style lang="scss">
 .event-card .el-tag {
 	color: #0084d1;
 	border-color: #0af;
@@ -10,6 +10,13 @@
 .event-card .el-tag--info {
 	color: #333;
 	border-color: #aaa;
+}
+@media screen and (max-width: 470px) {
+	body .el-menu--horizontal > .el-menu-item,
+	body .el-menu--horizontal > .el-submenu .el-submenu__title {
+		height: 50px;
+		line-height: 50px;
+	}
 }
 </style>
 <style lang="scss" scoped>
