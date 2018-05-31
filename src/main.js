@@ -10,8 +10,8 @@ import VueMq from "vue-mq";
  
 Vue.use(VueMq, {
 	breakpoints: {
-		desktop: Infinity,
 		mobile : 470,
+		desktop: Infinity,
 	},
 });
 
