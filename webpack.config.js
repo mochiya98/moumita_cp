@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env, argv) => {
 	let exp = {
-		mode  : "development",
+		mode  : process.env.NODE_ENV,
 		entry : "./src/main.js",
 		output: {
 			path      : path.resolve(__dirname, "./dist"),
@@ -104,8 +104,8 @@ module.exports = (env, argv) => {
 		],
 	//devtool: '#eval-source-map'
 	};
-	console.log("MODE:" + argv.mode);
-	if(argv.mode !== "production"){
+	console.log("MODE:" + process.env.NODE_ENV);
+	if(process.env.NODE_ENV !== "production"){
 		exp.devtool = "#source-map";
 		//console.log(exp.module.rules);
 		exp
