@@ -74,7 +74,7 @@
 	}
 	hr {
 		border-width: 0;
-		border-bottom: 4px solid #000;
+		border-bottom: 3px solid #999;
 	}
 }
 .event_meta {
@@ -125,7 +125,7 @@ export default {
 			let raw = this.$store.state.event.events.find(
 				c => c.event_id - 0 === this.event_id
 			);
-			return raw
+			let event = raw
 				? raw.data
 				: {
 					address    : "(未指定)",
@@ -143,6 +143,10 @@ export default {
 					title      : "[!]データのないイベントです",
 					updated_at : "1523364663",
 				};
+			if(!raw){
+				this.$store.dispatch("event/getEventDetail",{event_id:this.event_id})
+			}
+			return event;
 		},
 		event_datetime(){
 			let started_dt = new Date(this.event.started_at * 1000);
