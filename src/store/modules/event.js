@@ -3,6 +3,21 @@ import router from "router";
 
 const store = {
 	actions: {
+		getEventDetail({commit, state}, payload){
+			return new Promise((resolve, reject)=>{
+				api.get("/events/" + payload.event_id, {})
+					.then(function(result){
+						if(!result.event){
+							//router.push("/");
+							//location.reload();
+							return false;
+						}
+						let event = result.event;
+						commit("addEvents", [event]);
+						resolve(event);
+					});
+			});
+		},
 		getNextMoumita({commit, state}, payload){
 			return new Promise((resolve, reject)=>{
 				api.get("/events", {
