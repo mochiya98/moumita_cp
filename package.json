@@ -36,12 +36,12 @@
     "eslint": "^4.19.1",
     "file-loader": "^1.1.4",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "git+https://github.com/sass/node-sass.git#a8005ad3e34b3310536888c299a186623a178f80",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "vue-loader": "^15.2.2",
     "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4",
+    "webpack-cli": "^3.0.1",
     "webpack-dev-server": "^3.1.4"
   }
 }
