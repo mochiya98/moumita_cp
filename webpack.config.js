@@ -112,7 +112,7 @@ module.exports = (env, argv) => {
 			.module
 			.rules
 			.find(c=>!!c.test.toString()
-				.match(/s[ac]ss/))
+				.test(/s[ac]ss/))
 			.use
 			.map(c=>{
 				if(typeof c === "string")return c;
