@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://mochiya98.starfree.jp/api/v1/moumita_cp";
+const API_URL = "http://m98.be/api/v1/moumita_cp";
 
 export default {
 
